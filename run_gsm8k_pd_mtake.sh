@@ -68,6 +68,7 @@ fi
 
 ENV="DATA_DIR=${HOME}/data/gsm8k ${ENV}"
 #ENV="NUM_GPUS=4 ${ENV}"
+#ENV="NUM_PREFILL=2 ${ENV}"
 ENV="LOGGER=console ${ENV}"
 ENV="INFERENCE_BACKEND=vllm ${ENV}"
 
@@ -76,8 +77,8 @@ env 2>&1 | tee -a ${LOGFILE}
 echo "============================================================" | tee -a ${LOGFILE}
 
 # @@@ahoaho XXX
-#cmd="${ENV}bash examples/train/gsm8k/run_gsm8k.sh"
-cmd="${ENV}bash examples/train/gsm8k/run_gsm8k_mtake.sh"
+#cmd="${ENV}bash examples/train/gsm8k/run_gsm8k_pd.sh"
+cmd="${ENV}bash examples/train/gsm8k/run_gsm8k_pd_mtake.sh"
 echo "$cmd" | tee -a ${LOGFILE}
 eval "$cmd" 2>&1 | tee -a ${LOGFILE}
 
