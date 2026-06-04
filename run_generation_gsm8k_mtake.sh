@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+#
+# OK with 1 GPU
+#
+
 # for macOS
 if command -v gdate &> /dev/null
 then

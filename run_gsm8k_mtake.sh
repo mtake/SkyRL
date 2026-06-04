@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+#
+# ERR
+# Not OK with 8 GPUs
+#
+
 # for macOS
 if command -v gdate &> /dev/null
 then
@@ -24,13 +29,8 @@ else
 fi
 echo "XXX NUM_GPUS: ${NUM_GPUS}" | tee -a ${LOGFILE}
 
-# @@@ahoaho XXX
-#if (( NUM_GPUS == 0 )); then
-#    echo "ERROR: A GPU is required to run this command. Exiting..." | tee -a ${LOGFILE}
-#    exit 1
-#fi
-if (( NUM_GPUS < 8 )); then
-    echo "ERROR: 8 GPUs are required to run this command. Exiting..." | tee -a ${LOGFILE}
+if (( NUM_GPUS == 0 )); then
+    echo "ERROR: A GPU is required to run this command. Exiting..." | tee -a ${LOGFILE}
     exit 1
 fi
 
@@ -67,7 +67,7 @@ ENV="TORCH_NCCL_ASYNC_ERROR_HANDLING=1 ${ENV}"
 fi
 
 ENV="DATA_DIR=${HOME}/data/gsm8k ${ENV}"
-#ENV="NUM_GPUS=4 ${ENV}"
+#ENV="NUM_GPUS=${NUM_GPUS} ${ENV}"
 ENV="LOGGER=console ${ENV}"
 ENV="INFERENCE_BACKEND=vllm ${ENV}"
 

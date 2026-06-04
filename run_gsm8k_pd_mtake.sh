@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+#
+# ERR
+# Not OK with 8 GPUs
+#
+
 # for macOS
 if command -v gdate &> /dev/null
 then
