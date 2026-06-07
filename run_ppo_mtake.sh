@@ -85,6 +85,9 @@ ENV="DATA_DIR=${HOME}/data/gsm8k ${ENV}"
 ENV="LOGGER=console ${ENV}"
 ENV="INFERENCE_BACKEND=vllm ${ENV}"
 
+# ENV="CKPTS_ROOT=${HOME}/ckpts ${ENV}"
+ENV="CKPTS_ROOT=${PWD}/ckpts ${ENV}"
+
 echo "================== ENVIRONMENT VARIABLES ===================" | tee -a ${LOGFILE}
 env 2>&1 | tee -a ${LOGFILE}
 echo "============================================================" | tee -a ${LOGFILE}

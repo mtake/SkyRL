@@ -16,6 +16,8 @@ set -x
 
 : "${INFERENCE_BACKEND:=vllm}"
 
+: "${CKPTS_ROOT:="$HOME/ckpts"}"
+
 uv run --isolated --extra fsdp -m skyrl.train.entrypoints.main_base \
   data.train_data="['$DATA_DIR/train.parquet']" \
   data.val_data="['$DATA_DIR/validation.parquet']" \
@@ -55,5 +57,5 @@ uv run --isolated --extra fsdp -m skyrl.train.entrypoints.main_base \
   trainer.run_name="gsm8k_test" \
   trainer.resume_mode=null \
   trainer.log_path="/tmp/skyrl-logs" \
-  trainer.ckpt_path="./ckpts/gsm8k_1.5B_ckpt" \
+  trainer.ckpt_path="$CKPTS_ROOT/gsm8k_1.5B_ckpt" \
   $@
