@@ -74,9 +74,8 @@ ENV="TORCH_NCCL_ASYNC_ERROR_HANDLING=1 ${ENV}"
 #ENV="NCCL_IB_DISABLE=1 ${ENV}"
 fi
 
-#ENV="DATA_DIR=${HOME}/data/gsm8k ${ENV}"
 #ENV="NUM_GPUS=${NUM_GPUS} ${ENV}"
-#ENV="LOGGER=console ${ENV}"
+ENV="LOGGER=console ${ENV}"
 
 # ENV="CKPTS_ROOT=${HOME}/ckpts ${ENV}"
 ENV="CKPTS_ROOT=${PWD}/ckpts ${ENV}"
@@ -86,8 +85,8 @@ env 2>&1 | tee -a ${LOGFILE}
 echo "============================================================" | tee -a ${LOGFILE}
 
 # @@@ahoaho XXX
-cmd="${ENV}bash examples/train/sft/run_sft_fsdp.sh"
-#cmd="${ENV}bash examples/train/sft/run_sft_fsdp_mtake.sh"
+#cmd="${ENV}bash examples/train/sft/run_sft_fsdp.sh"
+cmd="${ENV}bash examples/train/sft/run_sft_fsdp_mtake.sh"
 echo "$cmd" | tee -a ${LOGFILE}
 eval "$cmd" 2>&1 | tee -a ${LOGFILE}
 
