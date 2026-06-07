@@ -78,7 +78,7 @@ fi
 ENV="LOGGER=console ${ENV}"
 
 # ENV="CKPTS_ROOT=${HOME}/ckpts ${ENV}"
-ENV="CKPTS_ROOT=${PWD}/ckpts ${ENV}"
+ENV="CKPTS_ROOT=$(dirname ${PWD})/ckpts ${ENV}"  # NOTE: This is too big for Ray package
 
 echo "================== ENVIRONMENT VARIABLES ===================" | tee -a ${LOGFILE}
 env 2>&1 | tee -a ${LOGFILE}
