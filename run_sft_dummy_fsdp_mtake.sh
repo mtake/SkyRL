@@ -39,6 +39,15 @@ if [[ -d "${VENV}" ]]; then
     source "${VENV}/bin/activate"
 fi
 
+# @@@ahoaho XXX
+# NOTE start Ray if not running.
+unset _RAY_STARTED
+if ! ray status > /dev/null 2>&1; then
+    echo "XXX Starting Ray..."
+    ray start --head
+    _RAY_STARTED=1
+fi
+
 ENV=""
 ENV="TOKENIZERS_PARALLELISM=false ${ENV}"
 ENV="PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True ${ENV}"  # deprecated
@@ -77,6 +86,12 @@ cmd="${ENV}bash examples/train/sft/run_sft_dummy_fsdp.sh"
 #cmd="${ENV}bash examples/train/sft/run_sft_dummy_fsdp_mtake.sh"
 echo "$cmd" | tee -a ${LOGFILE}
 eval "$cmd" 2>&1 | tee -a ${LOGFILE}
+
+# @@@ahoaho XXX
+if [[ -n "${_RAY_STARTED}" ]]; then
+    echo "XXX Stopping Ray..."
+    ray stop
+fi
 
 END_TIME="$(${DATE_CMD} +%s)"
 END_TIME_STR="$(${DATE_CMD} -d @${END_TIME} +%Y%m%d-%H%M%S)"
