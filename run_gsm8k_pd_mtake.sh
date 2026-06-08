@@ -51,6 +51,8 @@ if ! ray status > /dev/null 2>&1; then
     echo "XXX Starting Ray..."
     ray start --head
     _RAY_STARTED=1
+else
+    echo "XXX Ray is already running."
 fi
 
 ENV=""
@@ -83,7 +85,7 @@ ENV="DATA_DIR=${HOME}/data/gsm8k ${ENV}"
 #ENV="NUM_GPUS=4 ${ENV}"
 #ENV="NUM_PREFILL=2 ${ENV}"
 # @@@ahoaho XXX for functional test
-ENV="EPOCHS=${EPOCHS:-3} ${ENV}"  # default: 20
+ENV="EPOCHS=${EPOCHS:-1} ${ENV}"  # default: 20
 ENV="LOGGER=console ${ENV}"
 ENV="INFERENCE_BACKEND=vllm ${ENV}"
 
