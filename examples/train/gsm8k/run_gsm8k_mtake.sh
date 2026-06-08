@@ -14,10 +14,15 @@ set -x
 : "${NUM_GPUS:=4}"
 : "${EPOCHS:=20}"
 : "${LOGGER:=wandb}" # change to "console" to print to stdout
+: "${LOG_PATH:="$HOME/tmp/skyrl-logs"}"
 
 : "${INFERENCE_BACKEND:=vllm}"
 
 : "${CKPTS_ROOT:="$HOME/ckpts"}"
+
+# @@@ahoaho XXX
+#  trainer.resume_mode=latest  # null, latest, or from_path. default: latest
+#  trainer.resume_path="path/to/saved_ckpt"  # default: None
 
 uv run --isolated --extra fsdp -m skyrl.train.entrypoints.main_base \
   data.train_data="['$DATA_DIR/train.parquet']" \
@@ -57,6 +62,6 @@ uv run --isolated --extra fsdp -m skyrl.train.entrypoints.main_base \
   trainer.project_name="gsm8k" \
   trainer.run_name="gsm8k_test" \
   trainer.resume_mode=null \
-  trainer.log_path="/tmp/skyrl-logs" \
+  trainer.log_path="$LOG_PATH" \
   trainer.ckpt_path="$CKPTS_ROOT/gsm8k_1.5B_ckpt" \
   $@
