@@ -28,8 +28,13 @@ else
 fi
 echo "XXX NUM_GPUS: ${NUM_GPUS}" | tee -a ${LOGFILE}
 
-if (( NUM_GPUS == 0 )); then
-    echo "ERROR: A GPU is required to run this command. Exiting..." | tee -a ${LOGFILE}
+# @@@ahoaho XXX
+#if (( NUM_GPUS == 0 )); then
+#    echo "ERROR: A GPU is required to run this command. Exiting..." | tee -a ${LOGFILE}
+#    exit 1
+#fi
+if (( NUM_GPUS < 4 )); then
+    echo "ERROR: 4 GPUs are required to run this command. Exiting..." | tee -a ${LOGFILE}
     exit 1
 fi
 
