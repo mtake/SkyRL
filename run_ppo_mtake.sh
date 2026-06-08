@@ -82,6 +82,7 @@ fi
 
 ENV="DATA_DIR=${HOME}/data/gsm8k ${ENV}"
 #ENV="NUM_GPUS=4 ${ENV}"
+#ENV="EPOCHS=${EPOCHS:-3} ${ENV}"  # default: 20
 ENV="LOGGER=console ${ENV}"
 ENV="INFERENCE_BACKEND=vllm ${ENV}"
 

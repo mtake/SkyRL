@@ -12,6 +12,7 @@ set -x
 
 : "${DATA_DIR:="$HOME/data/gsm8k"}"
 : "${NUM_GPUS:=4}"
+: "${EPOCHS:=20}"
 : "${LOGGER:=wandb}" # change to "console" to print to stdout
 
 : "${INFERENCE_BACKEND:=vllm}"
@@ -30,7 +31,7 @@ uv run --isolated --extra fsdp -m skyrl.train.entrypoints.main_base \
   trainer.placement.ref_num_gpus_per_node=$NUM_GPUS \
   generator.inference_engine.num_engines=$NUM_GPUS \
   generator.inference_engine.tensor_parallel_size=1 \
-  trainer.epochs=20 \
+  trainer.epochs=$EPOCHS \
   trainer.eval_batch_size=1024 \
   trainer.eval_before_train=true \
   trainer.eval_interval=5 \

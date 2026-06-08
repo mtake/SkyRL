@@ -12,6 +12,7 @@ set -x
 : "${DATA_DIR:="$HOME/data/gsm8k"}"
 : "${NUM_GPUS:=4}"
 : "${NUM_PREFILL:=2}"
+: "${EPOCHS:=20}"
 : "${LOGGER:=wandb}" # change to "console" to print to stdout
 
 : "${INFERENCE_BACKEND:=vllm}"
@@ -34,7 +35,7 @@ uv run --isolated --extra fsdp -m skyrl.train.entrypoints.main_base \
   generator.inference_engine.enable_pd=True \
   generator.inference_engine.num_prefill=$NUM_PREFILL \
   generator.inference_engine.engine_init_kwargs.kv_transfer_config.kv_connector=NixlConnector \
-  trainer.epochs=20 \
+  trainer.epochs=$EPOCHS \
   trainer.eval_batch_size=1024 \
   trainer.eval_before_train=true \
   trainer.eval_interval=5 \
