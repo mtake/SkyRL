@@ -51,6 +51,8 @@ if ! ray status > /dev/null 2>&1; then
     echo "XXX Starting Ray..."
     ray start --head
     _RAY_STARTED=1
+else
+    echo "XXX Ray is already running."
 fi
 
 ENV=""
