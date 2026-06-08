@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #
-# WIP with 8 GPUs
+# WIP with 4 GPUs
 #
 
 # for macOS
@@ -33,8 +33,8 @@ echo "XXX NUM_GPUS: ${NUM_GPUS}" | tee -a ${LOGFILE}
 #    echo "ERROR: A GPU is required to run this command. Exiting..." | tee -a ${LOGFILE}
 #    exit 1
 #fi
-if (( NUM_GPUS < 8 )); then
-    echo "ERROR: 8 GPUs are required to run this command. Exiting..." | tee -a ${LOGFILE}
+if (( NUM_GPUS < 4 )); then
+    echo "ERROR: 4 GPUs are required to run this command. Exiting..." | tee -a ${LOGFILE}
     exit 1
 fi
 
@@ -82,7 +82,7 @@ ENV="TORCH_NCCL_ASYNC_ERROR_HANDLING=1 ${ENV}"
 fi
 
 ENV="DATA_DIR=${HOME}/data/gsm8k ${ENV}"
-#ENV="NUM_GPUS=4 ${ENV}"
+#ENV="NUM_GPUS=${NUM_GPUS} ${ENV}"
 # @@@ahoaho XXX for functional test
 ENV="EPOCHS=${EPOCHS:-1} ${ENV}"  # default: 20
 ENV="LOGGER=console ${ENV}"
