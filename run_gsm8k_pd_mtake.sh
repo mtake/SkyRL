@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
 #
-# ERR
-# Not OK with 8 GPUs
+# WIP with 8 GPUs
 #
 
 # for macOS
@@ -83,7 +82,8 @@ fi
 ENV="DATA_DIR=${HOME}/data/gsm8k ${ENV}"
 #ENV="NUM_GPUS=4 ${ENV}"
 #ENV="NUM_PREFILL=2 ${ENV}"
-#ENV="EPOCHS=${EPOCHS:-3} ${ENV}"  # default: 20
+# @@@ahoaho XXX for functional test
+ENV="EPOCHS=${EPOCHS:-3} ${ENV}"  # default: 20
 ENV="LOGGER=console ${ENV}"
 ENV="INFERENCE_BACKEND=vllm ${ENV}"
 
