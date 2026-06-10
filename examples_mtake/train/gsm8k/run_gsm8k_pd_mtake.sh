@@ -10,6 +10,7 @@ set -x
 # Requires 8 GPUs: 2 prefill + 2 decode engines, non-colocated with 4 training workers.
 
 : "${DATA_DIR:="$HOME/data/gsm8k"}"
+: "${POLICY_MODEL:="Qwen/Qwen2.5-1.5B-Instruct"}"
 : "${NUM_GPUS:=4}"
 : "${NUM_PREFILL:=2}"
 : "${EPOCHS:=20}"
@@ -25,7 +26,7 @@ uv run --isolated --extra fsdp -m skyrl.train.entrypoints.main_base \
   data.train_data="['$DATA_DIR/train.parquet']" \
   data.val_data="['$DATA_DIR/validation.parquet']" \
   trainer.algorithm.advantage_estimator="grpo" \
-  trainer.policy.model.path="Qwen/Qwen2.5-1.5B-Instruct" \
+  trainer.policy.model.path="$POLICY_MODEL" \
   trainer.placement.colocate_all=false \
   trainer.strategy=fsdp \
   trainer.placement.policy_num_gpus_per_node=$NUM_GPUS \

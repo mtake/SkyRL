@@ -12,13 +12,14 @@ set -x
 # Example:
 #   bash examples/train/sft/run_sft_dummy_fsdp.sh dummy_run_max_steps=10
 
+: "${MODEL:="Qwen/Qwen2.5-0.5B-Instruct"}"
 : "${NUM_GPUS:=1}"
 : "${LOGGER:=wandb}" # change to "console" to print to stdout
 
 uv run --isolated --extra fsdp \
     python -m skyrl.train.main_sft \
     strategy=fsdp \
-    model.path=Qwen/Qwen2.5-0.5B-Instruct \
+    model.path="$MODEL" \
     max_length=2048 \
     num_steps=10 \
     batch_size=4 \

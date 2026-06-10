@@ -7,6 +7,7 @@ set -x
 # bash examples/train/gsm8k/run_generation_gsm8k.sh
 
 : "${DATA_DIR:="$HOME/data/gsm8k"}"
+: "${POLICY_MODEL:="Qwen/Qwen2.5-1.5B-Instruct"}"
 : "${NUM_GPUS:=1}"
 : "${LOGGER:=wandb}" # change to "console" to print to stdout
 
@@ -15,7 +16,7 @@ set -x
 uv run --isolated --extra fsdp \
   -m skyrl.train.entrypoints.main_generate \
   data.val_data="['$DATA_DIR/validation.parquet']" \
-  trainer.policy.model.path="Qwen/Qwen2.5-0.5B-Instruct" \
+  trainer.policy.model.path="$POLICY_MODEL" \
   trainer.logger="$LOGGER" \
   trainer.placement.colocate_all=false \
   generator.inference_engine.backend=$INFERENCE_BACKEND \

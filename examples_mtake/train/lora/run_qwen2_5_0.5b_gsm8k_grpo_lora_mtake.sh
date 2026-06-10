@@ -9,6 +9,7 @@ set -x
 # NOTE (sumanthrh): `micro_train_batch_size_per_gpu` and `micro_forward_batch_size_per_gpu` can be tuned
 
 : "${DATA_DIR:="$HOME/data/gsm8k"}"
+: "${POLICY_MODEL:="Qwen/Qwen2.5-0.5B-Instruct"}"
 : "${NUM_GPUS:=4}"
 : "${EPOCHS:=20}"
 : "${LOGGER:=wandb}" # change to "console" to print to stdout
@@ -22,7 +23,7 @@ uv run --isolated --extra fsdp -m skyrl.train.entrypoints.main_base \
   data.train_data="['$DATA_DIR/train.parquet']" \
   data.val_data="['$DATA_DIR/validation.parquet']" \
   trainer.algorithm.advantage_estimator="grpo" \
-  trainer.policy.model.path="Qwen/Qwen2.5-0.5B-Instruct" \
+  trainer.policy.model.path="$POLICY_MODEL" \
   trainer.placement.colocate_all=true \
   trainer.policy.model.lora.rank=32 \
   trainer.policy.model.lora.alpha=32 \

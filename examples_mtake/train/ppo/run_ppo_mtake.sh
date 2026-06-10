@@ -6,6 +6,8 @@ set -x
 # bash examples/train/ppo/run_ppo.sh 
 
 : "${DATA_DIR:="$HOME/data/gsm8k"}"
+: "${POLICY_MODEL:="Qwen/Qwen2.5-1.5B-Instruct"}"
+: "${CRITIC_MODEL:="Qwen/Qwen2.5-1.5B-Instruct"}"
 : "${NUM_GPUS:=4}"
 : "${EPOCHS:=20}"
 : "${LOGGER:=wandb}" # change to "console" to print to stdout
@@ -18,8 +20,8 @@ uv run --isolated --extra fsdp -m skyrl.train.entrypoints.main_base \
   data.train_data="['$DATA_DIR/train.parquet']" \
   data.val_data="['$DATA_DIR/validation.parquet']" \
   trainer.algorithm.advantage_estimator="gae" \
-  trainer.policy.model.path="Qwen/Qwen2.5-1.5B-Instruct" \
-  trainer.critic.model.path="Qwen/Qwen2.5-1.5B-Instruct" \
+  trainer.policy.model.path="$POLICY_MODEL" \
+  trainer.critic.model.path="$CRITIC_MODEL" \
   trainer.placement.colocate_all=true \
   trainer.strategy=fsdp \
   trainer.placement.policy_num_gpus_per_node=$NUM_GPUS \

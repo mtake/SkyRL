@@ -12,6 +12,7 @@ set -x
 # Example:
 #   bash examples/train/sft/run_sft_fsdp.sh num_steps=20 batch_size=8
 
+: "${MODEL:="Qwen/Qwen2.5-0.5B-Instruct"}"
 : "${NUM_GPUS:=1}"
 : "${LOGGER:=wandb}" # change to "console" to print to stdout
 
@@ -20,7 +21,7 @@ set -x
 uv run --isolated --extra fsdp \
     python -m skyrl.train.main_sft \
     strategy=fsdp \
-    model.path=Qwen/Qwen2.5-0.5B-Instruct \
+    model.path="$MODEL" \
     dataset_name=yahma/alpaca-cleaned \
     dataset_split="train[:100]" \
     messages_key=messages \

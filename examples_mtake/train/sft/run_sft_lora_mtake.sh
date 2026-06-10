@@ -14,6 +14,7 @@ set -x
 # Example:
 #   bash examples/train/sft/run_sft_lora.sh num_steps=20 model.lora.rank=64
 
+: "${MODEL:="Qwen/Qwen2.5-0.5B-Instruct"}"
 : "${NUM_GPUS:=1}"
 : "${LOGGER:=wandb}" # change to "console" to print to stdout
 
@@ -22,7 +23,7 @@ set -x
 uv run --isolated --extra fsdp \
     python -m skyrl.train.main_sft \
     strategy=fsdp \
-    model.path=Qwen/Qwen2.5-0.5B-Instruct \
+    model.path="$MODEL" \
     model.lora.rank=32 \
     model.lora.alpha=16 \
     model.lora.target_modules=all-linear \
