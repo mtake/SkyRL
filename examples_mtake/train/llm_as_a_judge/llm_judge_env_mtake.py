@@ -54,7 +54,15 @@ class GSM8kLLMJudgeEnv(BaseTextEnv):
         openai_api_key = os.getenv("OPENAI_API_KEY")
         if openai_api_key is None:
             raise ValueError("`OPENAI_API_KEY` must be set for Llm as a judge env")
-        self.llm_judge_client = OpenAI(base_url=env_config.base_url, api_key=openai_api_key)
+        # @@@ahoaho XXX
+        # self.llm_judge_client = OpenAI(base_url=env_config.base_url, api_key=openai_api_key)
+        default_headers = None
+        RITS_API_KEY = os.getenv("RITS_API_KEY")
+        if RITS_API_KEY is not None:
+            default_headers = {
+                "RITS_API_KEY": RITS_API_KEY,
+            }
+        self.llm_judge_client = OpenAI(base_url=env_config.base_url, api_key=openai_api_key, default_headers=default_headers)
         self.model = env_config.model
 
     def _get_reward(self, action: str) -> float:
