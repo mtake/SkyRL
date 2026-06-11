@@ -76,6 +76,8 @@ ENV="TORCH_NCCL_ASYNC_ERROR_HANDLING=1 ${ENV}"
 #ENV="NCCL_IB_DISABLE=1 ${ENV}"
 fi
 
+# @@@ahoaho XXX TO BE VERIFIED
+####ENV="MODEL=ibm-granite/granite-4.1-3b ${ENV}"  # default: Qwen/Qwen2.5-0.5B-Instruct
 ENV="NUM_GPUS=${NUM_GPUS} ${ENV}"
 ENV="LOGGER=console ${ENV}"
 

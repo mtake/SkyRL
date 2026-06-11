@@ -82,6 +82,8 @@ ENV="TORCH_NCCL_ASYNC_ERROR_HANDLING=1 ${ENV}"
 fi
 
 ENV="DATA_DIR=${HOME}/data/gsm8k ${ENV}"
+# @@@ahoaho XXX OK
+ENV="POLICY_MODEL=ibm-granite/granite-4.1-3b ${ENV}"  # default: Qwen/Qwen2.5-1.5B-Instruct
 #ENV="NUM_GPUS=4 ${ENV}"
 #ENV="NUM_PREFILL=2 ${ENV}"
 # @@@ahoaho XXX for functional test
