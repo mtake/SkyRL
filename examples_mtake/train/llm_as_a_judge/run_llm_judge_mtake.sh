@@ -20,6 +20,10 @@ set -x
 
 : "${CKPTS_ROOT:="$HOME/ckpts"}"
 
+# @@@ahoaho XXX
+#  trainer.train_batch_size=32 \
+#  trainer.policy_mini_batch_size=32 \
+
 # We use a smaller batch size here for demonstration
 uv run --isolated --extra fsdp --env-file .env.llm_judge -m examples.train.llm_as_a_judge.main_llm_judge \
   data.train_data="['$DATA_DIR/train.parquet']" \
@@ -37,8 +41,8 @@ uv run --isolated --extra fsdp --env-file .env.llm_judge -m examples.train.llm_a
   trainer.eval_before_train=false \
   trainer.eval_interval=5 \
   trainer.update_epochs_per_batch=1 \
-  trainer.train_batch_size=32 \
-  trainer.policy_mini_batch_size=32 \
+  trainer.train_batch_size=256 \
+  trainer.policy_mini_batch_size=256 \
   trainer.micro_forward_batch_size_per_gpu=40 \
   trainer.micro_train_batch_size_per_gpu=40 \
   trainer.ckpt_interval=10 \
