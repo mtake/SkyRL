@@ -67,6 +67,7 @@ fi
 : "${NUM_GPUS:=8}"
 : "${EPOCHS:=1}"
 : "${LOGGER:=wandb}" # change to "console" to print to stdout
+: "${LOG_PATH:="$HOME/tmp/skyrl-logs"}"
 : "${INFERENCE_BACKEND:=vllm}"
 : "${CKPTS_ROOT:="$HOME/ckpts"}"
 
@@ -124,6 +125,7 @@ uv run --isolated --frozen --extra fsdp -m skyrl.train.entrypoints.main_base \
   trainer.hf_save_interval=100 \
   trainer.max_ckpts_to_keep=5 \
   trainer.resume_mode=latest \
+  trainer.log_path="$LOG_PATH" \
   trainer.ckpt_path="$CKPTS_ROOT/${RUN_NAME}" \
   trainer.eval_batch_size=256 \
   trainer.eval_before_train=false \

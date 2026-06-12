@@ -11,6 +11,7 @@ set -x
 : "${NUM_GPUS:=4}"
 : "${EPOCHS:=20}"
 : "${LOGGER:=wandb}" # change to "console" to print to stdout
+: "${LOG_PATH:="$HOME/tmp/skyrl-logs"}"
 
 : "${INFERENCE_BACKEND:=vllm}"
 
@@ -54,5 +55,6 @@ uv run --isolated --extra fsdp -m examples.train.async.main_async \
   trainer.project_name="gsm8k-async" \
   trainer.run_name="gsm8k_test_async" \
   trainer.resume_mode=null \
+  trainer.log_path="$LOG_PATH" \
   trainer.ckpt_path="$CKPTS_ROOT/async_gsm8k_ckpt" \
   $@

@@ -10,6 +10,7 @@ set -x
 : "${NUM_GPUS:=4}"
 : "${EPOCHS:=20}"
 : "${LOGGER:=wandb}" # change to "console" to print to stdout
+: "${LOG_PATH:="$HOME/tmp/skyrl-logs"}"
 
 : "${INFERENCE_BACKEND:=vllm}"
 
@@ -52,5 +53,6 @@ uv run --isolated --extra fsdp -m examples.train.multiply.main_multiply \
   trainer.logger="$LOGGER" \
   trainer.project_name="multiply" \
   trainer.run_name="multiply_test" \
+  trainer.log_path="$LOG_PATH" \
   trainer.ckpt_path="$CKPTS_ROOT/multiply_ckpt" \
   $@

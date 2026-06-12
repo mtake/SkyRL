@@ -13,6 +13,7 @@ set -x
 : "${TP_SIZE:=1}"
 : "${EPOCHS:=20}"
 : "${LOGGER:=wandb}" # change to "console" to print to stdout
+: "${LOG_PATH:="$HOME/tmp/skyrl-logs"}"
 
 : "${INFERENCE_BACKEND:=vllm}"
 : "${JUDGE_MODEL:=gpt-4o-mini}"
@@ -61,6 +62,7 @@ uv run --isolated --extra fsdp --env-file .env.llm_judge -m examples_mtake.train
   trainer.project_name="gsm8k" \
   trainer.run_name="gsm8k_llm_as_a_judge" \
   trainer.resume_mode=null \
+  trainer.log_path="$LOG_PATH" \
   trainer.ckpt_path="$CKPTS_ROOT/llm_judge" \
   environment.env_class=llm_as_a_judge \
   environment.skyrl_gym.llm_as_a_judge.model="$JUDGE_MODEL" \

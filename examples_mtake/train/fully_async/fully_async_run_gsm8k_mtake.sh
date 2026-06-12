@@ -19,6 +19,7 @@ set -x
 : "${NUM_INFERENCE_GPUS:=2}"
 : "${NUM_POLICY_GPUS:=2}"
 : "${LOGGER:=wandb}" # change to "console" to print to stdout / or use wandb
+: "${LOG_PATH:="$HOME/tmp/skyrl-logs"}"
 
 : "${INFERENCE_BACKEND:=vllm}"
 
@@ -80,6 +81,7 @@ uv run --isolated --extra fsdp -m examples.train.fully_async.main_fully_async \
   trainer.project_name="gsm8k-async" \
   trainer.run_name=${RUN_NAME} \
   trainer.resume_mode=latest \
+  trainer.log_path="$LOG_PATH" \
   trainer.ckpt_path="$CKPTS_ROOT/${RUN_NAME}" \
   generator.inference_engine.enforce_eager=true \
   $@

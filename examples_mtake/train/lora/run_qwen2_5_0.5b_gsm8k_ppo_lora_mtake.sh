@@ -12,6 +12,7 @@ set -x
 : "${NUM_GPUS:=4}"
 : "${EPOCHS:=20}"
 : "${LOGGER:=wandb}" # change to "console" to print to stdout
+: "${LOG_PATH:="$HOME/tmp/skyrl-logs"}"
 
 : "${INFERENCE_BACKEND:=vllm}"
 
@@ -63,5 +64,6 @@ uv run --isolated --extra fsdp -m skyrl.train.entrypoints.main_base \
   trainer.project_name="gsm8k_0.5b_lora_ppo" \
   trainer.run_name="gsm8k_0.5b_lora_ppo" \
   trainer.resume_mode=null \
+  trainer.log_path="$LOG_PATH" \
   trainer.ckpt_path="$CKPTS_ROOT/gsm8k_0.5b_lora_ppo_ckpt" \
   $@

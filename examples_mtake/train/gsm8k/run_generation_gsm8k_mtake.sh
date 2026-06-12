@@ -10,6 +10,7 @@ set -x
 : "${POLICY_MODEL:="Qwen/Qwen2.5-1.5B-Instruct"}"
 : "${NUM_GPUS:=1}"
 : "${LOGGER:=wandb}" # change to "console" to print to stdout
+: "${LOG_PATH:="$HOME/tmp/skyrl-logs"}"
 
 : "${INFERENCE_BACKEND:=vllm}"
 
@@ -26,4 +27,5 @@ uv run --isolated --extra fsdp \
   generator.eval_sampling_params.max_generate_length=1024 \
   generator.eval_sampling_params.temperature=0.7 \
   environment.env_class=gsm8k \
+  trainer.log_path="$LOG_PATH" \
   "$@"
