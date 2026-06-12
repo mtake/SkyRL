@@ -84,7 +84,7 @@ fi
 ENV="DATA_DIR=${HOME}/data/gsm8k ${ENV}"
 # @@@ahoaho XXX TO BE VERIFIED
 ####ENV="POLICY_MODEL=ibm-granite/granite-4.1-3b ${ENV}"  # default: Qwen/Qwen2.5-1.5B-Instruct
-ENV="NUM_GPUS=${NUM_GPUS} ${ENV}"
+#ENV="NUM_GPUS=4 ${ENV}"
 # @@@ahoaho XXX for functional test
 ENV="EPOCHS=${EPOCHS:-1} ${ENV}"  # default: 20
 ENV="LOGGER=console ${ENV}"
