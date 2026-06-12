@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #
-# OK with 4 GPUs
+# WIP with 8 GPUs
 #
 
 # for macOS
