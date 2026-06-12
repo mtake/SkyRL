@@ -11,12 +11,10 @@ set -x
 : "${NUM_GPUS:=4}"
 : "${EPOCHS:=20}"
 : "${LOGGER:=wandb}" # change to "console" to print to stdout
-: "${LOG_PATH:="$HOME/tmp/skyrl-logs"}"
 
 : "${INFERENCE_BACKEND:=vllm}"
 
 : "${CKPTS_ROOT:="$HOME/ckpts"}"
-
 
 uv run --isolated --extra fsdp -m examples.train.async.main_async \
   data.train_data="['$DATA_DIR/train.parquet']" \
