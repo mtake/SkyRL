@@ -81,7 +81,7 @@ ENV="TORCH_NCCL_ASYNC_ERROR_HANDLING=1 ${ENV}"
 #ENV="NCCL_IB_DISABLE=1 ${ENV}"
 fi
 
-ENV="DATA_DIR=${HOME}/data/gsm8k_llm_judge ${ENV}"
+# ENV="DATA_DIR=${HOME}/data/gsm8k_llm_judge ${ENV}"
 # @@@ahoaho XXX TO BE VERIFIED
 ####ENV="POLICY_MODEL=ibm-granite/granite-4.1-3b ${ENV}"  # default: Qwen/Qwen2.5-1.5B-Instruct
 ENV="NUM_GPUS=${NUM_GPUS} ${ENV}"
@@ -95,7 +95,6 @@ ENV="JUDGE_MODEL=openai/gpt-oss-120b ${ENV}"  # default: gpt-4o-mini
 ENV="JUDGE_BASE_URL=https://inference-3scale-apicast-production.apps.rits.fmaas.res.ibm.com/gpt-oss-120b/v1 ${ENV}"  # default: null
 
 # ENV="CKPTS_ROOT=${HOME}/ckpts ${ENV}"
-ENV="CKPTS_ROOT=$(dirname ${PWD})/ckpts ${ENV}"  # NOTE: This is too big for Ray package
 
 echo "================== ENVIRONMENT VARIABLES ===================" | tee -a ${LOGFILE}
 env 2>&1 | tee -a ${LOGFILE}

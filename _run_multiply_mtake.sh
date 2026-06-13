@@ -81,7 +81,7 @@ ENV="TORCH_NCCL_ASYNC_ERROR_HANDLING=1 ${ENV}"
 #ENV="NCCL_IB_DISABLE=1 ${ENV}"
 fi
 
-ENV="DATA_DIR=${HOME}/data/multiply ${ENV}"
+# ENV="DATA_DIR=${HOME}/data/multiply ${ENV}"
 # @@@ahoaho XXX TO BE VERIFIED
 ####ENV="POLICY_MODEL=ibm-granite/granite-4.1-3b ${ENV}"  # default: Qwen/Qwen2.5-1.5B-Instruct
 ENV="NUM_GPUS=${NUM_GPUS} ${ENV}"
@@ -91,7 +91,6 @@ ENV="LOGGER=console ${ENV}"
 ENV="INFERENCE_BACKEND=vllm ${ENV}"
 
 # ENV="CKPTS_ROOT=${HOME}/ckpts ${ENV}"
-ENV="CKPTS_ROOT=$(dirname ${PWD})/ckpts ${ENV}"  # NOTE: This is too big for Ray package
 
 echo "================== ENVIRONMENT VARIABLES ===================" | tee -a ${LOGFILE}
 env 2>&1 | tee -a ${LOGFILE}
