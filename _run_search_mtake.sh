@@ -87,7 +87,7 @@ fi
 ENV="NUM_GPUS=${NUM_GPUS} ${ENV}"
 # ENV="EPOCHS=${EPOCHS:-1} ${ENV}"  # default: 1
 ENV="LOGGER=console ${ENV}"
-ENV="INFERENCE_BACKEND=vllm ${ENV}"
+# ENV="INFERENCE_BACKEND=vllm ${ENV}"
 
 # ENV="CKPTS_ROOT=${HOME}/ckpts ${ENV}"
 
