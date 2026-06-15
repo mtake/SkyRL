@@ -73,7 +73,7 @@ For issues with SkyRL or the Mini-SWE-Agent integration, please [open an Issue](
 
 ## Configuration
 
-Beyond the configuration for SkyRL in the training script, the task-specific configuration file is `examples/mini_swe_agent/swebench.yaml`, which controls:
+Beyond the configuration for SkyRL in the training script, the task-specific configuration file is `examples/train/mini_swe_agent/swebench.yaml`, which controls:
 - Environment backend settings
 - Step limits for agent execution
 - Tool configurations for Mini-SWE-Agent
