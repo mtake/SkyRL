@@ -3,6 +3,8 @@
 #
 # WIP with 8 GPUs
 #
+# XXX requires faiss-gpu
+#
 
 # for macOS
 if command -v gdate &> /dev/null
