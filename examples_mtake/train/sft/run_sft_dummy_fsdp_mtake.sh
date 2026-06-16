@@ -15,6 +15,7 @@ set -x
 : "${MODEL:="Qwen/Qwen2.5-0.5B-Instruct"}"
 : "${NUM_GPUS:=1}"
 : "${LOGGER:=wandb}" # change to "console" to print to stdout
+: "${LOG_PATH:="$HOME/tmp/skyrl-logs"}"
 
 uv run --isolated --extra fsdp \
     python -m skyrl.train.main_sft \
@@ -38,6 +39,7 @@ uv run --isolated --extra fsdp \
     logger="$LOGGER" \
     project_name=skyrl_sft_benchmark \
     run_name=sft_dummy_fsdp \
+    log_path="$LOG_PATH" \
     dummy_run_full_ctx=true \
     dummy_run_max_steps=5 \
     "$@"

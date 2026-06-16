@@ -72,6 +72,7 @@ uv run --isolated --extra fsdp --extra miniswe --env-file examples_mtake/train/m
   trainer.project_name="mini_swe" \
   trainer.run_name="mini_swe_8B_swe_gym" \
   trainer.resume_mode=null \
+  trainer.log_path="$LOG_PATH" \
   trainer.ckpt_path="$CKPTS_ROOT/llm_mini_swe" \
   generator.miniswe_config_path="examples/train/mini_swe_agent/swebench.yaml" \
   generator.miniswe_traj_dir=$MINISWE_TRAJ_DIR

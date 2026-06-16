@@ -9,6 +9,7 @@ set -x
 : "${MODEL:="Qwen/Qwen2.5-0.5B-Instruct"}"
 : "${NUM_GPUS:=1}"
 : "${LOGGER:=wandb}" # change to "console" to print to stdout
+: "${LOG_PATH:="$HOME/tmp/skyrl-logs"}"
 
 : "${CKPTS_ROOT:="$HOME/ckpts"}"
 
@@ -41,6 +42,7 @@ uv run --isolated --extra fsdp \
     logger="$LOGGER" \
     project_name=skyrl_sft_callbacks \
     run_name=skyrl_sft_callbacks_run \
+    log_path="$LOG_PATH" \
     ckpt_path="$CKPTS_ROOT/sft_with_callbacks_ckpt" \
     ckpt_interval=0 \
     "$@"
