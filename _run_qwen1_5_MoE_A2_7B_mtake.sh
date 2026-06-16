@@ -3,6 +3,8 @@
 #
 # WIP with 4 GPUs
 #
+# ray.exceptions.RayTaskError: ray::FSDPPolicyWorkerBase.broadcast_to_inference_engines()
+#
 
 # for macOS
 if command -v gdate &> /dev/null
