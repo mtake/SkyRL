@@ -1,24 +1,25 @@
-# SearchR1 Replication Setup Instructions 
+# SearchR1 Replication Setup Instructions
 
 We provide scripts to reproduce our results for training a multi-turn search agent using the dataset and recipe from [SearchR1](https://raw.githubusercontent.com/PeterGriffinJin/Search-R1/refs/heads/main/docs/retriever.md).
+<!--
+Additional Reference: [Verl+Sglang Instructions](https://github.com/zhaochenyang20/Awesome-ML-SYS-Tutorial/blob/main/rlhf/verl/multi-turn/tool_examples/verl-multiturn-searchR1-like.md).
+-->
 
-Additional Reference: [Verl+Sglang Instructions](https://github.com/zhaochenyang20/Awesome-ML-SYS-Tutorial/blob/main/rlhf/verl/multi-turn/tool_examples/verl-multiturn-searchR1-like.md). 
-
-## Prepare Datasets 
+## Prepare Datasets
 ```bash
 local_dir=~/data/searchR1
 uv run --isolated examples/train/search/searchr1_dataset.py --local_dir $local_dir
 ```
 
-# Start the Search Engine
+## Start the Search Engine
 Running the local retrieval server will use around 6GB of GPU memory per GPU, so make sure to account for this in your training run configuration.
 
-## Retriever environments 
+### Retriever environments
 ```bash
 uv pip install faiss-gpu==1.14.3 pyserini==2.3.0
 ```
 
-## Download the Index
+### Download the Index
 ```bash
 local_dir=~/data/searchR1
 python examples/train/search/searchr1_download.py --local_dir $local_dir
@@ -26,16 +27,14 @@ cat $local_dir/part_* > $local_dir/e5_Flat.index
 gzip -d $local_dir/wiki-18.jsonl.gz
 ```
 
-## Start the Local Flat e5 Retrieval Server 
+### Start the Local Flat e5 Retrieval Server
 ```bash
 # redirect the output to a file to avoid cluttering the terminal
 # we have observed outputting to the terminal causing spikes in server response times
-bash examples/train/search/retriever/retrieval_launch.sh > retrieval_server.log 
+bash examples/train/search/retriever/retrieval_launch.sh > retrieval_server.log
 ```
 
 ## Launch your Training Job
-Now from your base environment, you can launch your training run (which will use uv to package dependencies, separately from the retriever environment).
-
 ```bash
 export WANDB_API_KEY=your_wandb_api_key
 bash examples/train/search/run_search.sh
