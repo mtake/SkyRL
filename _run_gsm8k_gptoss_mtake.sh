@@ -3,6 +3,8 @@
 #
 # WIP with 8 GPUs
 #
+# ValueError: GptOssForCausalLM does not support an attention implementation through torch.nn.functional.scaled_dot_product_attention yet.
+#
 
 # for macOS
 if command -v gdate &> /dev/null
