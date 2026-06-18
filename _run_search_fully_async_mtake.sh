@@ -3,8 +3,6 @@
 #
 # WIP with 8 GPUs
 #
-# XXX requires faiss-gpu
-#
 
 # for macOS
 if command -v gdate &> /dev/null
@@ -45,6 +43,18 @@ VENV=.venv
 if [[ -d "${VENV}" ]]; then
     source "${VENV}/bin/activate"
 fi
+
+
+# @@@ahoaho XXX
+# NOTE launch retrieval server
+SERVER_LOGFILE="${BASENAME}-${START_TIME_STR}-${HOSTNAME_S}-retrieval_server.log"
+cmd="bash examples/train/search/retriever/retrieval_launch.sh"
+echo "$cmd" | tee -a ${LOGFILE}
+eval "$cmd" > ${SERVER_LOGFILE} 2>&1 &
+SLEEP_SEC=60
+echo "XXX SLEEP ${SLEEP_SEC} secs for launching retrieval server" | tee -a ${LOGFILE}
+sleep $SLEEP_SEC
+
 
 # @@@ahoaho XXX
 # NOTE start Ray if not running.
