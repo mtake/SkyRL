@@ -51,8 +51,8 @@ uv run --isolated --extra fsdp -m examples.train.multiply.main_multiply \
   generator.n_samples_per_prompt=5 \
   generator.inference_engine.gpu_memory_utilization=0.8 \
   trainer.logger="$LOGGER" \
+  trainer.log_path="$LOG_PATH" \
   trainer.project_name="multiply" \
   trainer.run_name="multiply_test" \
-  trainer.log_path="$LOG_PATH" \
   trainer.ckpt_path="$CKPTS_ROOT/multiply_ckpt" \
   $@

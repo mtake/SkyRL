@@ -19,6 +19,7 @@ uv run --isolated --extra fsdp \
   data.val_data="['$DATA_DIR/validation.parquet']" \
   trainer.policy.model.path="$POLICY_MODEL" \
   trainer.logger="$LOGGER" \
+  trainer.log_path="$LOG_PATH" \
   trainer.placement.colocate_all=false \
   generator.inference_engine.backend=$INFERENCE_BACKEND \
   generator.inference_engine.num_engines=$NUM_GPUS \
@@ -27,5 +28,4 @@ uv run --isolated --extra fsdp \
   generator.eval_sampling_params.max_generate_length=1024 \
   generator.eval_sampling_params.temperature=0.7 \
   environment.env_class=gsm8k \
-  trainer.log_path="$LOG_PATH" \
   "$@"

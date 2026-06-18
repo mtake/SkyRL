@@ -50,10 +50,10 @@ uv run --isolated --frozen --extra fsdp -m skyrl.train.entrypoints.main_base \
   generator.sampling_params.temperature=0.6 \
   generator.sampling_params.top_p=0.95 \
   trainer.logger="$LOGGER" \
+  trainer.log_path="$LOG_PATH" \
   trainer.project_name="skyrl" \
   trainer.run_name="skyrlcode_test" \
   trainer.resume_mode=null \
-  trainer.log_path="$LOG_PATH" \
   trainer.ckpt_path="$CKPTS_ROOT/lcb_3B_ckpt" \
   trainer.epochs=$EPOCHS \
   trainer.eval_batch_size=1024 \

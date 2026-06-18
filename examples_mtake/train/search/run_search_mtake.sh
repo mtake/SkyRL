@@ -119,13 +119,13 @@ uv run --isolated --frozen --extra fsdp -m skyrl.train.entrypoints.main_base \
   environment.skyrl_gym.search.search_url="http://127.0.0.1:8000/retrieve" \
   environment.skyrl_gym.search.topk=3 \
   trainer.logger="$LOGGER" \
+  trainer.log_path="$LOG_PATH" \
   trainer.project_name="skyrl-search" \
   trainer.run_name="${RUN_NAME}" \
   trainer.ckpt_interval=20 \
   trainer.hf_save_interval=100 \
   trainer.max_ckpts_to_keep=5 \
   trainer.resume_mode=latest \
-  trainer.log_path="$LOG_PATH" \
   trainer.ckpt_path="$CKPTS_ROOT/${RUN_NAME}" \
   trainer.eval_batch_size=256 \
   trainer.eval_before_train=false \

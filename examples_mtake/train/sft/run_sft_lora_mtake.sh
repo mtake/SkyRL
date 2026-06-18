@@ -47,9 +47,9 @@ uv run --isolated --extra fsdp \
     fsdp_config.cpu_offload=false \
     fsdp_config.reshard_after_forward=true \
     logger="$LOGGER" \
+    log_path="$LOG_PATH" \
     project_name=skyrl_sft_lora \
     run_name=skyrl_sft_lora_fsdp_run \
-    log_path="$LOG_PATH" \
     ckpt_path="$CKPTS_ROOT/sft_lora_ckpt" \
     ckpt_interval=0 \
     resume_from="" \

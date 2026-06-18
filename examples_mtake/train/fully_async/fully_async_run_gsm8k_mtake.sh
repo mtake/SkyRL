@@ -78,10 +78,10 @@ uv run --isolated --extra fsdp -m examples.train.fully_async.main_fully_async \
   generator.n_samples_per_prompt=5 \
   generator.inference_engine.gpu_memory_utilization=0.8 \
   trainer.logger="$LOGGER" \
+  trainer.log_path="$LOG_PATH" \
   trainer.project_name="gsm8k-async" \
   trainer.run_name=${RUN_NAME} \
   trainer.resume_mode=latest \
-  trainer.log_path="$LOG_PATH" \
   trainer.ckpt_path="$CKPTS_ROOT/${RUN_NAME}" \
   generator.inference_engine.enforce_eager=true \
   $@

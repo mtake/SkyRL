@@ -59,10 +59,10 @@ uv run --isolated --extra fsdp --env-file .env.llm_judge -m examples_mtake.train
   generator.n_samples_per_prompt=5 \
   generator.inference_engine.gpu_memory_utilization=0.8 \
   trainer.logger="$LOGGER" \
+  trainer.log_path="$LOG_PATH" \
   trainer.project_name="gsm8k" \
   trainer.run_name="gsm8k_llm_as_a_judge" \
   trainer.resume_mode=null \
-  trainer.log_path="$LOG_PATH" \
   trainer.ckpt_path="$CKPTS_ROOT/llm_judge" \
   environment.env_class=llm_as_a_judge \
   environment.skyrl_gym.llm_as_a_judge.model="$JUDGE_MODEL" \

@@ -40,9 +40,9 @@ uv run --isolated --extra fsdp \
     fsdp_config.cpu_offload=false \
     fsdp_config.reshard_after_forward=true \
     logger="$LOGGER" \
+    log_path="$LOG_PATH" \
     project_name=skyrl_sft_callbacks \
     run_name=skyrl_sft_callbacks_run \
-    log_path="$LOG_PATH" \
     ckpt_path="$CKPTS_ROOT/sft_with_callbacks_ckpt" \
     ckpt_interval=0 \
     "$@"

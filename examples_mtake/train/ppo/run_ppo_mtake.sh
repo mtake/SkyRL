@@ -51,10 +51,10 @@ uv run --isolated --extra fsdp -m skyrl.train.entrypoints.main_base \
   generator.n_samples_per_prompt=5 \
   generator.inference_engine.gpu_memory_utilization=0.8 \
   trainer.logger="$LOGGER" \
+  trainer.log_path="$LOG_PATH" \
   trainer.project_name="gsm8k" \
   trainer.run_name="gsm8k_ppo" \
   trainer.resume_mode=null \
-  trainer.log_path="$LOG_PATH" \
   trainer.ckpt_path="$CKPTS_ROOT/gsm8k_1.5B_ckpt_ppo" \
   trainer.eval_batch_size=1024 \
   trainer.eval_before_train=true \

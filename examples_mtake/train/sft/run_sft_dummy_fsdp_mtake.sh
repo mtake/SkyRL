@@ -37,9 +37,9 @@ uv run --isolated --extra fsdp \
     fsdp_config.cpu_offload=false \
     fsdp_config.reshard_after_forward=true \
     logger="$LOGGER" \
+    log_path="$LOG_PATH" \
     project_name=skyrl_sft_benchmark \
     run_name=sft_dummy_fsdp \
-    log_path="$LOG_PATH" \
     dummy_run_full_ctx=true \
     dummy_run_max_steps=5 \
     "$@"
