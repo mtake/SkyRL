@@ -88,7 +88,7 @@ fi
 #ENV="NUM_POLICY_GPUS=2 ${ENV}"
 # @@@ahoaho XXX for functional test
 ENV="EPOCHS=${EPOCHS:-1} ${ENV}"  # default: 20
-ENV="LOGGER=console ${ENV}"
+# ENV="LOGGER=mlflow ${ENV}"
 # ENV="INFERENCE_BACKEND=vllm ${ENV}"
 
 # ENV="CKPTS_ROOT=${HOME}/ckpts ${ENV}"

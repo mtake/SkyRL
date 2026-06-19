@@ -6,7 +6,7 @@ set -x
 : "${POLICY_MODEL:="Qwen/Qwen1.5-MoE-A2.7B-Chat"}"
 : "${NUM_GPUS:=4}"
 : "${EPOCHS:=20}"
-: "${LOGGER:=wandb}" # change to "console" to print to stdout
+: "${LOGGER:=console}" # change to "console" to print to stdout
 : "${LOG_PATH:="$HOME/tmp/skyrl-logs"}"
 
 : "${INFERENCE_BACKEND:=vllm}"

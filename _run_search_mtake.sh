@@ -98,7 +98,7 @@ fi
 ####ENV="POLICY_MODEL=ibm-granite/granite-4.1-3b ${ENV}"  # default: Qwen/Qwen2.5-3B-Instruct
 ENV="NUM_GPUS=${NUM_GPUS} ${ENV}"
 # ENV="EPOCHS=${EPOCHS:-1} ${ENV}"  # default: 1
-ENV="LOGGER=console ${ENV}"
+# ENV="LOGGER=mlflow ${ENV}"
 # ENV="INFERENCE_BACKEND=vllm ${ENV}"
 
 # ENV="CKPTS_ROOT=${HOME}/ckpts ${ENV}"

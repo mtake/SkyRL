@@ -88,7 +88,7 @@ ENV="POLICY_MODEL=ibm-granite/granite-4.1-3b ${ENV}"  # default: Qwen/Qwen2.5-1.
 #ENV="NUM_PREFILL=2 ${ENV}"
 # @@@ahoaho XXX for functional test
 ENV="EPOCHS=${EPOCHS:-1} ${ENV}"  # default: 20
-ENV="LOGGER=console ${ENV}"
+# ENV="LOGGER=mlflow ${ENV}"
 # ENV="INFERENCE_BACKEND=vllm ${ENV}"
 
 # ENV="CKPTS_ROOT=${HOME}/ckpts ${ENV}"

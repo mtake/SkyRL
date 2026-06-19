@@ -89,7 +89,7 @@ ENV="NUM_GPUS=${NUM_GPUS} ${ENV}"
 #ENV="TP_SIZE=1 ${ENV}"
 # @@@ahoaho XXX for functional test
 ENV="EPOCHS=${EPOCHS:-1} ${ENV}"  # default: 20
-ENV="LOGGER=console ${ENV}"
+# ENV="LOGGER=mlflow ${ENV}"
 # ENV="INFERENCE_BACKEND=vllm ${ENV}"
 ENV="JUDGE_MODEL=openai/gpt-oss-120b ${ENV}"  # default: gpt-4o-mini
 ENV="JUDGE_BASE_URL=https://inference-3scale-apicast-production.apps.rits.fmaas.res.ibm.com/gpt-oss-120b/v1 ${ENV}"  # default: null

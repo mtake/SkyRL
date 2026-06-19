@@ -17,7 +17,7 @@ set -x
 : "${POLICY_MODEL:="Qwen/Qwen3-8B"}"
 : "${NUM_GPUS:=8}"
 : "${EPOCHS:=20}"
-: "${LOGGER:=wandb}" # change to "console" to print to stdout
+: "${LOGGER:=console}" # change to "console" to print to stdout
 : "${LOG_PATH:="$HOME/tmp/skyrl-logs"}"
 
 : "${INFERENCE_BACKEND:=vllm}"

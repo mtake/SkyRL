@@ -18,7 +18,7 @@ set -x
 : "${DATA_DIR:="$HOME/data/gsm8k"}"
 : "${NUM_INFERENCE_GPUS:=2}"
 : "${NUM_POLICY_GPUS:=2}"
-: "${LOGGER:=wandb}" # change to "console" to print to stdout / or use wandb
+: "${LOGGER:=console}" # change to "console" to print to stdout / or use wandb
 : "${LOG_PATH:="$HOME/tmp/skyrl-logs"}"
 
 : "${INFERENCE_BACKEND:=vllm}"

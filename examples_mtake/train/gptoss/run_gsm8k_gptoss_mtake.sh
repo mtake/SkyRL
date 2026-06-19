@@ -15,7 +15,7 @@ set -exo pipefail
 : "${POLICY_MODEL:="unsloth/gpt-oss-20b-BF16"}"
 : "${NUM_GPUS:=8}"
 : "${EPOCHS:=20}"
-: "${LOGGER:=wandb}" # change to "console" to print to stdout
+: "${LOGGER:=console}" # change to "console" to print to stdout
 : "${LOG_PATH:="$HOME/tmp/skyrl-logs"}"
 
 : "${INFERENCE_BACKEND:=vllm}"

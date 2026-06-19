@@ -66,7 +66,7 @@ fi
 : "${POLICY_MODEL:="Qwen/Qwen2.5-3B-Instruct"}"
 : "${NUM_GPUS:=8}"
 : "${EPOCHS:=1}"
-: "${LOGGER:=wandb}" # change to "console" to print to stdout
+: "${LOGGER:=console}" # change to "console" to print to stdout
 : "${LOG_PATH:="$HOME/tmp/skyrl-logs"}"
 : "${INFERENCE_BACKEND:=vllm}"
 : "${CKPTS_ROOT:="$HOME/ckpts"}"

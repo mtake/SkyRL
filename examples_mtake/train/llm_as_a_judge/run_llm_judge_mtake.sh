@@ -12,7 +12,7 @@ set -x
 : "${NUM_INFERENCE_ENGINES:=4}"
 : "${TP_SIZE:=1}"
 : "${EPOCHS:=20}"
-: "${LOGGER:=wandb}" # change to "console" to print to stdout
+: "${LOGGER:=console}" # change to "console" to print to stdout
 : "${LOG_PATH:="$HOME/tmp/skyrl-logs"}"
 
 : "${INFERENCE_BACKEND:=vllm}"

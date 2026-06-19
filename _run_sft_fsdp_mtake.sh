@@ -79,7 +79,7 @@ fi
 # @@@ahoaho XXX TO BE VERIFIED
 ####ENV="MODEL=ibm-granite/granite-4.1-3b ${ENV}"  # default: Qwen/Qwen2.5-0.5B-Instruct
 ENV="NUM_GPUS=${NUM_GPUS} ${ENV}"
-ENV="LOGGER=console ${ENV}"
+# ENV="LOGGER=mlflow ${ENV}"
 
 # ENV="CKPTS_ROOT=${HOME}/ckpts ${ENV}"
 
