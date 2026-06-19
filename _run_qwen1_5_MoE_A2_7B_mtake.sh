@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
 
 #
-# WIP with 4 GPUs
+# ERROR with 4 GPUs for Qwen/Qwen1.5-MoE-A2.7B-Chat
 #
-# ray.exceptions.RayTaskError: ray::FSDPPolicyWorkerBase.broadcast_to_inference_engines()
+# vLLM KeyError: 'layers.0.mlp.experts.gate_up_proj'.
+#
+
+#
+# ERROR with 8 GPUs for Qwen/Qwen3-30B-A3B-Instruct-2507
+#
+# vLLM TimeoutError: Server failed to become healthy within 600s.
 #
 
 # for macOS
@@ -85,7 +91,7 @@ fi
 
 # ENV="DATA_DIR=${HOME}/data/gsm8k ${ENV}"
 # @@@ahoaho XXX TO BE VERIFIED
-####ENV="POLICY_MODEL=ibm-granite/granite-4.1-3b ${ENV}"  # default: Qwen/Qwen1.5-MoE-A2.7B-Chat
+####ENV="POLICY_MODEL=Qwen/Qwen3-30B-A3B-Instruct-2507 ${ENV}"  # default: Qwen/Qwen1.5-MoE-A2.7B-Chat
 ENV="NUM_GPUS=${NUM_GPUS} ${ENV}"
 # @@@ahoaho XXX for functional test
 ENV="EPOCHS=${EPOCHS:-1} ${ENV}"  # default: 20
