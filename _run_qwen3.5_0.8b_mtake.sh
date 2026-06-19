@@ -1,13 +1,7 @@
 #!/usr/bin/env bash
 
 #
-# WIP with 4 GPUs
-#
-#  .../python3.12/site-packages/torch/distributed/distributed_c10d.py", line 2968, in broadcast
-#    work = group.broadcast([tensor], opts)
-#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-# torch.distributed.DistBackendError: NCCL error in: /pytorch/torch/csrc/distributed/c10d/NCCLUtils.cpp:93, unhandled cuda error (run with NCCL_DEBUG=INFO for details), NCCL version 2.28.9
-# ncclUnhandledCudaError: Call to CUDA function failed.
+# OK with 4 GPUs
 #
 
 # for macOS
