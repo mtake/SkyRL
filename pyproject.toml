@@ -98,6 +98,8 @@ skyrl-train = [
     "pybind11",
     "setuptools",
     "nixl; sys_platform == 'linux'",
+    # @@@ahoaho added by takeuchi
+    "mlflow",
 ]
 
 fsdp = [
