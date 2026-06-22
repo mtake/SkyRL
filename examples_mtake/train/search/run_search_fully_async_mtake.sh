@@ -43,9 +43,6 @@ if [ "$STEP_WISE" = "true" ]; then
   fi
 fi
 
-
-: "${RUN_NAME:="skyrl-search_4turns_maxgeneratelen_500-fully-async-geoMask${GEO_MASK_LOW}_${GEO_MASK_HIGH}-maxStale${MAX_STALENESS_STEPS}-numCon${NUM_PARALLEL_GENERATION_WORKERS}"}"
-
 : "${POLICY_MODEL:="Qwen/Qwen2.5-3B-Instruct"}"
 : "${NUM_GPUS:=4}"
 : "${EPOCHS:=1}"
@@ -53,6 +50,9 @@ fi
 : "${LOG_PATH:="$HOME/tmp/skyrl-logs"}"
 : "${INFERENCE_BACKEND:=vllm}"
 : "${CKPTS_ROOT:="$HOME/ckpts"}"
+
+: "${PROJECT_NAME:="searchr1-async"}"
+: "${RUN_NAME:="skyrl-search_4turns_maxgeneratelen_500-fully-async-geoMask${GEO_MASK_LOW}_${GEO_MASK_HIGH}-maxStale${MAX_STALENESS_STEPS}-numCon${NUM_PARALLEL_GENERATION_WORKERS}"}"
 
 uv run --isolated --extra fsdp -m examples.train.fully_async.main_fully_async \
   data.train_data="['${DATA_DIR}/train.parquet']" \
@@ -106,8 +106,8 @@ uv run --isolated --extra fsdp -m examples.train.fully_async.main_fully_async \
   environment.skyrl_gym.search.topk=3 \
   trainer.logger="$LOGGER" \
   trainer.log_path="$LOG_PATH" \
-  trainer.project_name="searchr1-async" \
-  trainer.run_name="${RUN_NAME}" \
+  trainer.project_name="$PROJECT_NAME" \
+  trainer.run_name="$RUN_NAME" \
   trainer.ckpt_interval="${CKPT_INTERVAL}" \
   trainer.hf_save_interval=800 \
   trainer.max_ckpts_to_keep=5 \

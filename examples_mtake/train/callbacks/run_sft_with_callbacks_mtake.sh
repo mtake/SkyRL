@@ -13,6 +13,9 @@ set -x
 
 : "${CKPTS_ROOT:="$HOME/ckpts"}"
 
+: "${PROJECT_NAME:="skyrl_sft_callbacks"}"
+: "${RUN_NAME:="skyrl_sft_callbacks_run"}"
+
 uv run --isolated --extra fsdp \
     -m examples.train.callbacks.main_sft_with_callbacks \
     strategy=fsdp \
@@ -41,8 +44,8 @@ uv run --isolated --extra fsdp \
     fsdp_config.reshard_after_forward=true \
     logger="$LOGGER" \
     log_path="$LOG_PATH" \
-    project_name=skyrl_sft_callbacks \
-    run_name=skyrl_sft_callbacks_run \
+    project_name="$PROJECT_NAME" \
+    run_name="$RUN_NAME" \
     ckpt_path="$CKPTS_ROOT/sft_with_callbacks_ckpt" \
     ckpt_interval=0 \
     "$@"

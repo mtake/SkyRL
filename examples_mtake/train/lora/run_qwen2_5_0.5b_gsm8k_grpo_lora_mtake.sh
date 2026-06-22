@@ -19,6 +19,8 @@ set -x
 
 : "${CKPTS_ROOT:="$HOME/ckpts"}"
 
+: "${PROJECT_NAME:="gsm8k_0.5b_lora_grpo"}"
+: "${RUN_NAME:="gsm8k_0.5b_lora_grpo"}"
 
 uv run --isolated --extra fsdp -m skyrl.train.entrypoints.main_base \
   data.train_data="['$DATA_DIR/train.parquet']" \
@@ -57,8 +59,8 @@ uv run --isolated --extra fsdp -m skyrl.train.entrypoints.main_base \
   generator.inference_engine.gpu_memory_utilization=0.8 \
   trainer.logger="$LOGGER" \
   trainer.log_path="$LOG_PATH" \
-  trainer.project_name="gsm8k_0.5b_lora_grpo" \
-  trainer.run_name="gsm8k_0.5b_lora_grpo" \
+  trainer.project_name="$PROJECT_NAME" \
+  trainer.run_name="$RUN_NAME" \
   trainer.resume_mode=null \
   trainer.ckpt_path="$CKPTS_ROOT/gsm8k_0.5b_lora_grpo_ckpt" \
   $@

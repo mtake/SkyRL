@@ -22,6 +22,9 @@ set -exo pipefail
 
 : "${CKPTS_ROOT:="$HOME/ckpts"}"
 
+: "${PROJECT_NAME:="gsm8k_gptoss"}"
+: "${RUN_NAME:="gsm8k_test_gptoss_low"}"
+
 uv run --isolated --extra fsdp -m skyrl.train.entrypoints.main_base \
   data.train_data="['$DATA_DIR/train.parquet']" \
   data.val_data="['$DATA_DIR/validation.parquet']" \
@@ -60,8 +63,8 @@ uv run --isolated --extra fsdp -m skyrl.train.entrypoints.main_base \
   generator.inference_engine.gpu_memory_utilization=0.8 \
   trainer.logger="$LOGGER" \
   trainer.log_path="$LOG_PATH" \
-  trainer.project_name="gsm8k_gptoss" \
-  trainer.run_name="gsm8k_test_gptoss_low" \
+  trainer.project_name="$PROJECT_NAME" \
+  trainer.run_name="$RUN_NAME" \
   trainer.resume_mode=latest \
   trainer.ckpt_path="$CKPTS_ROOT/gsm8k_1.5B_ckpt_gptoss" \
   generator.chat_template_kwargs={reasoning_effort:'low'} \

@@ -32,11 +32,12 @@ SEQUENCE_MASK_METRIC=geometric
 GEO_MASK_HIGH=1.01
 GEO_MASK_LOW=0.99
 
-RUN_NAME=gsm8k-fully-async-qwen2.5_1.5B-geoMask${GEO_MASK_LOW}_${GEO_MASK_HIGH}-maxStale${MAX_STALENESS_STEPS}-numCon${NUM_PARALLEL_GENERATION_WORKERS}-${NUM_POLICY_GPUS}train${NUM_INFERENCE_GPUS}gen
-
 : "${POLICY_MODEL:="Qwen/Qwen2.5-1.5B-Instruct"}"
 : "${EPOCHS:=20}"
 : "${CKPTS_ROOT:="$HOME/ckpts"}"
+
+: "${PROJECT_NAME:="gsm8k-async"}"
+: "${RUN_NAME:="gsm8k-fully-async-qwen2.5_1.5B-geoMask${GEO_MASK_LOW}_${GEO_MASK_HIGH}-maxStale${MAX_STALENESS_STEPS}-numCon${NUM_PARALLEL_GENERATION_WORKERS}-${NUM_POLICY_GPUS}train${NUM_INFERENCE_GPUS}gen"}"
 
 uv run --isolated --extra fsdp -m examples.train.fully_async.main_fully_async \
   data.train_data="['$DATA_DIR/train.parquet']" \
@@ -79,8 +80,8 @@ uv run --isolated --extra fsdp -m examples.train.fully_async.main_fully_async \
   generator.inference_engine.gpu_memory_utilization=0.8 \
   trainer.logger="$LOGGER" \
   trainer.log_path="$LOG_PATH" \
-  trainer.project_name="gsm8k-async" \
-  trainer.run_name=${RUN_NAME} \
+  trainer.project_name="$PROJECT_NAME" \
+  trainer.run_name="$RUN_NAME" \
   trainer.resume_mode=latest \
   trainer.ckpt_path="$CKPTS_ROOT/${RUN_NAME}" \
   generator.inference_engine.enforce_eager=true \

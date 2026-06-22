@@ -17,6 +17,9 @@ set -x
 : "${LOGGER:=console}" # change to "console" to print to stdout
 : "${LOG_PATH:="$HOME/tmp/skyrl-logs"}"
 
+: "${PROJECT_NAME:="skyrl_sft_benchmark"}"
+: "${RUN_NAME:="sft_dummy_fsdp"}"
+
 uv run --isolated --extra fsdp \
     python -m skyrl.train.main_sft \
     strategy=fsdp \
@@ -38,8 +41,8 @@ uv run --isolated --extra fsdp \
     fsdp_config.reshard_after_forward=true \
     logger="$LOGGER" \
     log_path="$LOG_PATH" \
-    project_name=skyrl_sft_benchmark \
-    run_name=sft_dummy_fsdp \
+    project_name="$PROJECT_NAME" \
+    run_name="$RUN_NAME" \
     dummy_run_full_ctx=true \
     dummy_run_max_steps=5 \
     "$@"

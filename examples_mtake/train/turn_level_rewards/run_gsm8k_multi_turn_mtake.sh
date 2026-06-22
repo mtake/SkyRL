@@ -21,6 +21,9 @@ set -x
 
 : "${ENV_CLASS:="gsm8k_multi_turn"}"
 
+: "${PROJECT_NAME:="$ENV_CLASS"}"
+: "${RUN_NAME:="$ENV_CLASS"}"
+
 uv run --isolated --extra fsdp -m skyrl.train.entrypoints.main_base \
   data.train_data="['$DATA_DIR/train.parquet']" \
   data.val_data="['$DATA_DIR/validation.parquet']" \
@@ -56,8 +59,8 @@ uv run --isolated --extra fsdp -m skyrl.train.entrypoints.main_base \
   generator.inference_engine.gpu_memory_utilization=0.8 \
   trainer.logger="$LOGGER" \
   trainer.log_path="$LOG_PATH" \
-  trainer.project_name="$ENV_CLASS" \
-  trainer.run_name="$ENV_CLASS" \
+  trainer.project_name="$PROJECT_NAME" \
+  trainer.run_name="$RUN_NAME" \
   trainer.resume_mode=null \
   trainer.ckpt_path="$CKPTS_ROOT/gsm8k_multi_turn_ckpt" \
   $@

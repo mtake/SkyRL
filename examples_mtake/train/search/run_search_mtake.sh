@@ -31,8 +31,6 @@ set -x
 # path for dataset (.parquet files) containing the prompts and metadata for each question
 : "${DATA_DIR:="$HOME/data/searchR1"}"
 
-: "${RUN_NAME:="skyrl-search_4turns_maxgeneratelen_500-multiturn-sync-TIS_2.0"}"
-
 TIS_TYPE=token
 TIS_IMP_RATIO_CAP=2.0
 
@@ -70,6 +68,9 @@ fi
 : "${LOG_PATH:="$HOME/tmp/skyrl-logs"}"
 : "${INFERENCE_BACKEND:=vllm}"
 : "${CKPTS_ROOT:="$HOME/ckpts"}"
+
+: "${PROJECT_NAME:="skyrl-search"}"
+: "${RUN_NAME:="skyrl-search_4turns_maxgeneratelen_500-multiturn-sync-TIS_2.0"}"
 
 uv run --isolated --frozen --extra fsdp -m skyrl.train.entrypoints.main_base \
   data.train_data="['${DATA_DIR}/train.parquet']" \
@@ -120,8 +121,8 @@ uv run --isolated --frozen --extra fsdp -m skyrl.train.entrypoints.main_base \
   environment.skyrl_gym.search.topk=3 \
   trainer.logger="$LOGGER" \
   trainer.log_path="$LOG_PATH" \
-  trainer.project_name="skyrl-search" \
-  trainer.run_name="${RUN_NAME}" \
+  trainer.project_name="$PROJECT_NAME" \
+  trainer.run_name="$RUN_NAME" \
   trainer.ckpt_interval=20 \
   trainer.hf_save_interval=100 \
   trainer.max_ckpts_to_keep=5 \

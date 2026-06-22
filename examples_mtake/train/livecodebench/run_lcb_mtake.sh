@@ -15,6 +15,9 @@ set -x
 
 : "${CKPTS_ROOT:="$HOME/ckpts"}"
 
+: "${PROJECT_NAME:="skyrl"}"
+: "${RUN_NAME:="skyrlcode_test"}"
+
 # NOTE (sumanthrh): micro_train_batch_size and micro_forward_batch_size can be tuned
 uv run --isolated --frozen --extra fsdp -m skyrl.train.entrypoints.main_base \
   trainer.algorithm.advantage_estimator="grpo" \
@@ -51,8 +54,8 @@ uv run --isolated --frozen --extra fsdp -m skyrl.train.entrypoints.main_base \
   generator.sampling_params.top_p=0.95 \
   trainer.logger="$LOGGER" \
   trainer.log_path="$LOG_PATH" \
-  trainer.project_name="skyrl" \
-  trainer.run_name="skyrlcode_test" \
+  trainer.project_name="$PROJECT_NAME" \
+  trainer.run_name="$RUN_NAME" \
   trainer.resume_mode=null \
   trainer.ckpt_path="$CKPTS_ROOT/lcb_3B_ckpt" \
   trainer.epochs=$EPOCHS \

@@ -21,6 +21,9 @@ set -x
 
 : "${CKPTS_ROOT:="$HOME/ckpts"}"
 
+: "${PROJECT_NAME:="gsm8k"}"
+: "${RUN_NAME:="gsm8k_test"}"
+
 # @@@ahoaho XXX
 #  trainer.resume_mode=latest  # null, latest, or from_path. default: latest
 #  trainer.resume_path="path/to/saved_ckpt"  # default: None
@@ -61,8 +64,8 @@ uv run --isolated --extra fsdp -m skyrl.train.entrypoints.main_base \
   generator.inference_engine.gpu_memory_utilization=0.8 \
   trainer.logger="$LOGGER" \
   trainer.log_path="$LOG_PATH" \
-  trainer.project_name="gsm8k" \
-  trainer.run_name="gsm8k_test" \
+  trainer.project_name="$PROJECT_NAME" \
+  trainer.run_name="$RUN_NAME" \
   trainer.resume_mode=null \
   trainer.ckpt_path="$CKPTS_ROOT/gsm8k_1.5B_ckpt" \
   $@

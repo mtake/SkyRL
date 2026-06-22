@@ -16,6 +16,9 @@ set -x
 
 : "${CKPTS_ROOT:="$HOME/ckpts"}"
 
+: "${PROJECT_NAME:="multiply"}"
+: "${RUN_NAME:="multiply_test"}"
+
 uv run --isolated --extra fsdp -m examples.train.multiply.main_multiply \
   data.train_data="['$DATA_DIR/train.parquet']" \
   data.val_data="['$DATA_DIR/validation.parquet']" \
@@ -52,7 +55,7 @@ uv run --isolated --extra fsdp -m examples.train.multiply.main_multiply \
   generator.inference_engine.gpu_memory_utilization=0.8 \
   trainer.logger="$LOGGER" \
   trainer.log_path="$LOG_PATH" \
-  trainer.project_name="multiply" \
-  trainer.run_name="multiply_test" \
+  trainer.project_name="$PROJECT_NAME" \
+  trainer.run_name="$RUN_NAME" \
   trainer.ckpt_path="$CKPTS_ROOT/multiply_ckpt" \
   $@

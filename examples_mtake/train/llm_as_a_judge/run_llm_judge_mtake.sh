@@ -21,6 +21,9 @@ set -x
 
 : "${CKPTS_ROOT:="$HOME/ckpts"}"
 
+: "${PROJECT_NAME:="gsm8k"}"
+: "${RUN_NAME:="gsm8k_llm_as_a_judge"}"
+
 # @@@ahoaho XXX
 #  trainer.train_batch_size=32 \
 #  trainer.policy_mini_batch_size=32 \
@@ -60,8 +63,8 @@ uv run --isolated --extra fsdp --env-file .env.llm_judge -m examples_mtake.train
   generator.inference_engine.gpu_memory_utilization=0.8 \
   trainer.logger="$LOGGER" \
   trainer.log_path="$LOG_PATH" \
-  trainer.project_name="gsm8k" \
-  trainer.run_name="gsm8k_llm_as_a_judge" \
+  trainer.project_name="$PROJECT_NAME" \
+  trainer.run_name="$RUN_NAME" \
   trainer.resume_mode=null \
   trainer.ckpt_path="$CKPTS_ROOT/llm_judge" \
   environment.env_class=llm_as_a_judge \

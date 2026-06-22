@@ -24,6 +24,9 @@ set -x
 
 : "${CKPTS_ROOT:="$HOME/ckpts"}"
 
+: "${PROJECT_NAME:="mini_swe"}"
+: "${RUN_NAME:="mini_swe_8B_swe_gym"}"
+
 # We use a small batch size here for demonstration
 # NOTE (sumanthrh): The `generator.max_turns` here is actually unused, and we use the `step_limit` from the `swebench.yaml` file. 
 # This simply has to be a value > 1
@@ -70,8 +73,8 @@ uv run --isolated --extra fsdp --extra miniswe --env-file examples_mtake/train/m
   generator.inference_engine.gpu_memory_utilization=0.8 \
   trainer.logger="$LOGGER" \
   trainer.log_path="$LOG_PATH" \
-  trainer.project_name="mini_swe" \
-  trainer.run_name="mini_swe_8B_swe_gym" \
+  trainer.project_name="$PROJECT_NAME" \
+  trainer.run_name="$RUN_NAME" \
   trainer.resume_mode=null \
   trainer.ckpt_path="$CKPTS_ROOT/llm_mini_swe" \
   generator.miniswe_config_path="examples/train/mini_swe_agent/swebench.yaml" \

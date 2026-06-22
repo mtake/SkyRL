@@ -19,6 +19,9 @@ set -x
 
 : "${CKPTS_ROOT:="$HOME/ckpts"}"
 
+: "${PROJECT_NAME:="skyrl_sft"}"
+: "${RUN_NAME:="skyrl_sft_fsdp_run"}"
+
 uv run --isolated --extra fsdp \
     python -m skyrl.train.main_sft \
     strategy=fsdp \
@@ -43,8 +46,8 @@ uv run --isolated --extra fsdp \
     fsdp_config.reshard_after_forward=true \
     logger="$LOGGER" \
     log_path="$LOG_PATH" \
-    project_name=skyrl_sft \
-    run_name=skyrl_sft_fsdp_run \
+    project_name="$PROJECT_NAME" \
+    run_name="$RUN_NAME" \
     ckpt_path="$CKPTS_ROOT/sft_fsdp_ckpt" \
     ckpt_interval=0 \
     resume_from="" \

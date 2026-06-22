@@ -17,6 +17,9 @@ set -x
 
 : "${CKPTS_ROOT:="$HOME/ckpts"}"
 
+: "${PROJECT_NAME:="gsm8k-async"}"
+: "${RUN_NAME:="gsm8k_test_async"}"
+
 uv run --isolated --extra fsdp -m examples.train.async.main_async \
   data.train_data="['$DATA_DIR/train.parquet']" \
   data.val_data="['$DATA_DIR/validation.parquet']" \
@@ -53,8 +56,8 @@ uv run --isolated --extra fsdp -m examples.train.async.main_async \
   generator.inference_engine.gpu_memory_utilization=0.8 \
   trainer.logger="$LOGGER" \
   trainer.log_path="$LOG_PATH" \
-  trainer.project_name="gsm8k-async" \
-  trainer.run_name="gsm8k_test_async" \
+  trainer.project_name="$PROJECT_NAME" \
+  trainer.run_name="$RUN_NAME" \
   trainer.resume_mode=null \
   trainer.ckpt_path="$CKPTS_ROOT/async_gsm8k_ckpt" \
   $@
