@@ -1,5 +1,10 @@
 set -x
 
+BASENAME="$(basename "${BASH_SOURCE}" .sh)"
+PROJECT_NAME_=${BASENAME}
+PROJECT_NAME_=${PROJECT_NAME_#run_}
+PROJECT_NAME_=${PROJECT_NAME_%_mtake}
+
 # Colocated GRPO training+generation for Qwen3-8B on the SWE-Bench task.
 # Uses 1 node with 8 GPUs.
 # uv run --isolated examples/train/mini_swe_agent/preprocess_swegym.py --output_dir ~/data/swe_gym_subset
@@ -24,7 +29,7 @@ set -x
 
 : "${CKPTS_ROOT:="$HOME/ckpts"}"
 
-: "${PROJECT_NAME:="mini_swe"}"
+: "${PROJECT_NAME:="$PROJECT_NAME_"}"
 : "${RUN_NAME:="mini_swe_8B_swe_gym"}"
 
 # We use a small batch size here for demonstration

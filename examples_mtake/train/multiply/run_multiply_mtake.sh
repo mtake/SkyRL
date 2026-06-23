@@ -1,5 +1,10 @@
 set -x
 
+BASENAME="$(basename "${BASH_SOURCE}" .sh)"
+PROJECT_NAME_=${BASENAME}
+PROJECT_NAME_=${PROJECT_NAME_#run_}
+PROJECT_NAME_=${PROJECT_NAME_%_mtake}
+
 # Colocated GRPO training+generation for Qwen2.5-1.5B-Instruct on a simple multiplication environment.
 # uv run examples/train/multiply/multiply_dataset.py --output_dir $HOME/data/multiply
 # export WANDB_API_KEY=<your_key_here>
@@ -16,7 +21,7 @@ set -x
 
 : "${CKPTS_ROOT:="$HOME/ckpts"}"
 
-: "${PROJECT_NAME:="multiply"}"
+: "${PROJECT_NAME:="$PROJECT_NAME_"}"
 : "${RUN_NAME:="multiply_test"}"
 
 uv run --isolated --extra fsdp -m examples.train.multiply.main_multiply \

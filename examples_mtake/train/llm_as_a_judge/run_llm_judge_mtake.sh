@@ -1,5 +1,10 @@
 set -x
 
+BASENAME="$(basename "${BASH_SOURCE}" .sh)"
+PROJECT_NAME_=${BASENAME}
+PROJECT_NAME_=${PROJECT_NAME_#run_}
+PROJECT_NAME_=${PROJECT_NAME_%_mtake}
+
 # Colocated GRPO training+generation for Qwen2.5-Coder-1.5B-Instruct on GSM8k dataset.
 # Uses 1 node with 4 GPUs.
 # uv run examples/train/llm_as_a_judge/gsm8k_dataset_judge.py --output_dir $HOME/data/gsm8k_llm_judge
@@ -21,7 +26,7 @@ set -x
 
 : "${CKPTS_ROOT:="$HOME/ckpts"}"
 
-: "${PROJECT_NAME:="gsm8k"}"
+: "${PROJECT_NAME:="$PROJECT_NAME_"}"
 : "${RUN_NAME:="gsm8k_llm_as_a_judge"}"
 
 # @@@ahoaho XXX

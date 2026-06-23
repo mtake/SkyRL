@@ -1,5 +1,10 @@
 set -x
 
+BASENAME="$(basename "${BASH_SOURCE}" .sh)"
+PROJECT_NAME_=${BASENAME}
+PROJECT_NAME_=${PROJECT_NAME_#run_}
+PROJECT_NAME_=${PROJECT_NAME_%_mtake}
+
 # Fully async GRPO training+generation for Qwen2.5-1.5B-Instruct on GSM8K.
 # This bash script is copied from examples/train/async/async_run_gsm8k.sh, except for:
 # - running examples.train.fully_async.main_fully_async
@@ -36,7 +41,7 @@ GEO_MASK_LOW=0.99
 : "${EPOCHS:=20}"
 : "${CKPTS_ROOT:="$HOME/ckpts"}"
 
-: "${PROJECT_NAME:="gsm8k-async"}"
+: "${PROJECT_NAME:="$PROJECT_NAME_"}"
 : "${RUN_NAME:="gsm8k-fully-async-qwen2.5_1.5B-geoMask${GEO_MASK_LOW}_${GEO_MASK_HIGH}-maxStale${MAX_STALENESS_STEPS}-numCon${NUM_PARALLEL_GENERATION_WORKERS}-${NUM_POLICY_GPUS}train${NUM_INFERENCE_GPUS}gen"}"
 
 uv run --isolated --extra fsdp -m examples.train.fully_async.main_fully_async \

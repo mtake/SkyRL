@@ -1,6 +1,11 @@
 #!/bin/bash
 set -x
 
+BASENAME="$(basename "${BASH_SOURCE}" .sh)"
+PROJECT_NAME_=${BASENAME}
+PROJECT_NAME_=${PROJECT_NAME_#run_}
+PROJECT_NAME_=${PROJECT_NAME_%_mtake}
+
 # Dummy/benchmarking SFT training with FSDP backend for Qwen2.5-0.5B-Instruct
 #
 # Skips real data loading and fabricates full-context random sequences.
@@ -17,7 +22,7 @@ set -x
 : "${LOGGER:=console}" # change to "console" to print to stdout
 : "${LOG_PATH:="$HOME/tmp/skyrl-logs"}"
 
-: "${PROJECT_NAME:="skyrl_sft_benchmark"}"
+: "${PROJECT_NAME:="$PROJECT_NAME_"}"
 : "${RUN_NAME:="sft_dummy_fsdp"}"
 
 uv run --isolated --extra fsdp \

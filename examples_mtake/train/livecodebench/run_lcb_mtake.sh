@@ -1,5 +1,10 @@
 set -x
 
+BASENAME="$(basename "${BASH_SOURCE}" .sh)"
+PROJECT_NAME_=${BASENAME}
+PROJECT_NAME_=${PROJECT_NAME_#run_}
+PROJECT_NAME_=${PROJECT_NAME_%_mtake}
+
 # Colocated GRPO training+generation for Qwen2.5-Coder-3B-Instruct on SearchR1 data.
 # export WANDB_API_KEY=<your_key_here>
 # bash examples/train/livecodebench/run_lcb.sh
@@ -15,7 +20,7 @@ set -x
 
 : "${CKPTS_ROOT:="$HOME/ckpts"}"
 
-: "${PROJECT_NAME:="skyrl"}"
+: "${PROJECT_NAME:="$PROJECT_NAME_"}"
 : "${RUN_NAME:="skyrlcode_test"}"
 
 # NOTE (sumanthrh): micro_train_batch_size and micro_forward_batch_size can be tuned

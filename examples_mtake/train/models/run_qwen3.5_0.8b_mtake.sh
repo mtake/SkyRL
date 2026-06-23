@@ -1,5 +1,10 @@
 set -x
 
+BASENAME="$(basename "${BASH_SOURCE}" .sh)"
+PROJECT_NAME_=${BASENAME}
+PROJECT_NAME_=${PROJECT_NAME_#run_}
+PROJECT_NAME_=${PROJECT_NAME_%_mtake}
+
 # Colocated GRPO training+generation for Qwen3.5-0.8B on GSM8K.
 
 # uv run examples/train/gsm8k/gsm8k_dataset.py --output_dir $HOME/data/gsm8k
@@ -25,7 +30,7 @@ LANGUAGE_MODEL_ONLY=true
 # disabling for now
 REMOVE_MICROBATCH_PADDING=false # sample packing 
 
-: "${PROJECT_NAME:="qwen3.5-0.8b"}"
+: "${PROJECT_NAME:="$PROJECT_NAME_"}"
 : "${RUN_NAME:="qwen3.5-0.8b_fsdp"}"
 
 uv run --isolated --extra fsdp -m skyrl.train.entrypoints.main_base \

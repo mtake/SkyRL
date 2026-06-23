@@ -1,5 +1,10 @@
 set -x
 
+BASENAME="$(basename "${BASH_SOURCE}" .sh)"
+PROJECT_NAME_=${BASENAME}
+PROJECT_NAME_=${PROJECT_NAME_#run_}
+PROJECT_NAME_=${PROJECT_NAME_%_mtake}
+
 # Non-colocated GRPO training+generation for Qwen2.5-1.5B-Instruct on GSM8K
 # with prefill-decode (PD) disaggregation.
 
@@ -21,7 +26,7 @@ set -x
 
 : "${CKPTS_ROOT:="$HOME/ckpts"}"
 
-: "${PROJECT_NAME:="gsm8k"}"
+: "${PROJECT_NAME:="$PROJECT_NAME_"}"
 : "${RUN_NAME:="gsm8k_pd_test"}"
 
 uv run --isolated --extra fsdp -m skyrl.train.entrypoints.main_base \

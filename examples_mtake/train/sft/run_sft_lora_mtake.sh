@@ -1,6 +1,11 @@
 #!/bin/bash
 set -x
 
+BASENAME="$(basename "${BASH_SOURCE}" .sh)"
+PROJECT_NAME_=${BASENAME}
+PROJECT_NAME_=${PROJECT_NAME_#run_}
+PROJECT_NAME_=${PROJECT_NAME_%_mtake}
+
 # SFT LoRA training with FSDP backend for Qwen2.5-0.5B-Instruct
 #
 # This script runs supervised fine-tuning with LoRA adapters using FSDP on
@@ -21,7 +26,7 @@ set -x
 
 : "${CKPTS_ROOT:="$HOME/ckpts"}"
 
-: "${PROJECT_NAME:="skyrl_sft_lora"}"
+: "${PROJECT_NAME:="$PROJECT_NAME_"}"
 : "${RUN_NAME:="skyrl_sft_lora_fsdp_run"}"
 
 uv run --isolated --extra fsdp \

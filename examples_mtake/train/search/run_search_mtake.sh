@@ -1,5 +1,10 @@
 set -x
 
+BASENAME="$(basename "${BASH_SOURCE}" .sh)"
+PROJECT_NAME_=${BASENAME}
+PROJECT_NAME_=${PROJECT_NAME_#run_}
+PROJECT_NAME_=${PROJECT_NAME_%_mtake}
+
 # Colocated GRPO training+generation for Qwen2.5-3B-Instruct on SearchR1 data.
 # Follow the instructions in docs/content/docs/recipes/searchr1.mdx for setup.
 #
@@ -69,7 +74,7 @@ fi
 : "${INFERENCE_BACKEND:=vllm}"
 : "${CKPTS_ROOT:="$HOME/ckpts"}"
 
-: "${PROJECT_NAME:="skyrl-search"}"
+: "${PROJECT_NAME:="$PROJECT_NAME_"}"
 : "${RUN_NAME:="skyrl-search_4turns_maxgeneratelen_500-multiturn-sync-TIS_2.0"}"
 
 uv run --isolated --frozen --extra fsdp -m skyrl.train.entrypoints.main_base \

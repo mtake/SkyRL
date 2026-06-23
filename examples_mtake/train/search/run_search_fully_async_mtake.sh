@@ -1,5 +1,10 @@
 set -x
 
+BASENAME="$(basename "${BASH_SOURCE}" .sh)"
+PROJECT_NAME_=${BASENAME}
+PROJECT_NAME_=${PROJECT_NAME_#run_}
+PROJECT_NAME_=${PROJECT_NAME_%_mtake}
+
 # Fully async GRPO training+generation for Qwen2.5-3B on SearchR1 data.
 # follow the instructions in examples/train/search/README.md for setting up the dataset
 # and for starting the local search server.
@@ -51,7 +56,7 @@ fi
 : "${INFERENCE_BACKEND:=vllm}"
 : "${CKPTS_ROOT:="$HOME/ckpts"}"
 
-: "${PROJECT_NAME:="searchr1-async"}"
+: "${PROJECT_NAME:="$PROJECT_NAME_"}"
 : "${RUN_NAME:="skyrl-search_4turns_maxgeneratelen_500-fully-async-geoMask${GEO_MASK_LOW}_${GEO_MASK_HIGH}-maxStale${MAX_STALENESS_STEPS}-numCon${NUM_PARALLEL_GENERATION_WORKERS}"}"
 
 uv run --isolated --extra fsdp -m examples.train.fully_async.main_fully_async \

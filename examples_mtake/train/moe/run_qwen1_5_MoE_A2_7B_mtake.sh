@@ -1,5 +1,10 @@
 set -x
 
+BASENAME="$(basename "${BASH_SOURCE}" .sh)"
+PROJECT_NAME_=${BASENAME}
+PROJECT_NAME_=${PROJECT_NAME_#run_}
+PROJECT_NAME_=${PROJECT_NAME_%_mtake}
+
 # Colocated GRPO training+generation for Qwen1.5-MoE-A2.7B-Chat on GSM8K.
 
 : "${DATA_DIR:="$HOME/data/gsm8k"}"
@@ -17,7 +22,7 @@ TP_SIZE=$NUM_GPUS
 EP_SIZE=$NUM_GPUS
 DP_SIZE=1
 
-: "${PROJECT_NAME:="moe"}"
+: "${PROJECT_NAME:="$PROJECT_NAME_"}"
 : "${RUN_NAME:="moe_test"}"
 
 uv run --isolated --extra fsdp -m skyrl.train.entrypoints.main_base \

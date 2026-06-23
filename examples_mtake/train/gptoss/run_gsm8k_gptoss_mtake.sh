@@ -1,5 +1,10 @@
 set -exo pipefail
 
+BASENAME="$(basename "${BASH_SOURCE}" .sh)"
+PROJECT_NAME_=${BASENAME}
+PROJECT_NAME_=${PROJECT_NAME_#run_}
+PROJECT_NAME_=${PROJECT_NAME_%_mtake}
+
 # Colocated GRPO training+generation for GPT-OSS-20B on GSM8K.
 # NOTE (sumanthrh): Currently, gpt-oss requires flash attention to be disabled since attention sinks are not supported: https://github.com/Dao-AILab/flash-attention/issues/1797
 # We thus disable flash attention as well as sample packing
@@ -22,7 +27,7 @@ set -exo pipefail
 
 : "${CKPTS_ROOT:="$HOME/ckpts"}"
 
-: "${PROJECT_NAME:="gsm8k_gptoss"}"
+: "${PROJECT_NAME:="$PROJECT_NAME_"}"
 : "${RUN_NAME:="gsm8k_test_gptoss_low"}"
 
 uv run --isolated --extra fsdp -m skyrl.train.entrypoints.main_base \

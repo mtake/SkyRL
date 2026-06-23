@@ -1,6 +1,11 @@
 #!/bin/bash
 set -x
 
+BASENAME="$(basename "${BASH_SOURCE}" .sh)"
+PROJECT_NAME_=${BASENAME}
+PROJECT_NAME_=${PROJECT_NAME_#run_}
+PROJECT_NAME_=${PROJECT_NAME_%_mtake}
+
 # SFT training with a `PerplexityLogger` callback.
 #
 # Usage:
@@ -13,7 +18,7 @@ set -x
 
 : "${CKPTS_ROOT:="$HOME/ckpts"}"
 
-: "${PROJECT_NAME:="skyrl_sft_callbacks"}"
+: "${PROJECT_NAME:="$PROJECT_NAME_"}"
 : "${RUN_NAME:="skyrl_sft_callbacks_run"}"
 
 uv run --isolated --extra fsdp \

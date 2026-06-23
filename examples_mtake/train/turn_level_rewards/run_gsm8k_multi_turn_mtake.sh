@@ -1,5 +1,10 @@
 set -x
 
+BASENAME="$(basename "${BASH_SOURCE}" .sh)"
+PROJECT_NAME_=${BASENAME}
+PROJECT_NAME_=${PROJECT_NAME_#run_}
+PROJECT_NAME_=${PROJECT_NAME_%_mtake}
+
 # Colocated GRPO training+generation for Qwen2.5-1.5B-Instruct on GSM8K with turn-level rewards.
 
 # uv run examples/train/turn_level_rewards/gsm8k_multi_turn_dataset.py --output_dir $HOME/data/gsm8k_multi_turn
@@ -21,7 +26,7 @@ set -x
 
 : "${ENV_CLASS:="gsm8k_multi_turn"}"
 
-: "${PROJECT_NAME:="$ENV_CLASS"}"
+: "${PROJECT_NAME:="$PROJECT_NAME_"}"
 : "${RUN_NAME:="$ENV_CLASS"}"
 
 uv run --isolated --extra fsdp -m skyrl.train.entrypoints.main_base \
