@@ -94,11 +94,11 @@ ENV="TORCH_NCCL_ASYNC_ERROR_HANDLING=1 ${ENV}"
 fi
 
 # ENV="DATA_DIR=${HOME}/data/searchR1 ${ENV}"
-# @@@ahoaho XXX TO BE VERIFIED
-####ENV="POLICY_MODEL=ibm-granite/granite-4.1-3b ${ENV}"  # default: Qwen/Qwen2.5-3B-Instruct
+# @@@ahoaho XXX OK
+ENV="POLICY_MODEL=ibm-granite/granite-4.1-8b ${ENV}"  # default: Qwen/Qwen2.5-3B-Instruct
 #ENV="NUM_GPUS=4 ${ENV}"
 # ENV="EPOCHS=${EPOCHS:-1} ${ENV}"  # default: 1
-# ENV="LOGGER=mlflow ${ENV}"
+ENV="LOGGER=mlflow ${ENV}"
 # ENV="INFERENCE_BACKEND=vllm ${ENV}"
 
 # ENV="CKPTS_ROOT=${HOME}/ckpts ${ENV}"
